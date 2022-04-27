@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список заметок</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <style>
+        .table_price {
+            border-collapse: collapse;
+            border-left: 3px solid #F79361;
+            border-right: 3px solid #F79361;
+            border-bottom: 3px solid #F79361;
+            font-family: "Lucida Grande", sans-serif;
+            margin:auto;
+        }
+        .table_price caption {
+            background: #F79361;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 2px  4px 0 rgba(0,0,0,.3);
+            color: white;
+            font-family: "Roboto Slab",serif;
+            font-style: normal;
+            font-size: 26px;
+            text-align: center;
+            margin: 0;
+        }
+        .table_price td, .table_price th {
+            padding: 10px;
+        }
+        .table_price th {
+            text-align: left;
+            font-size: 18px;
+        }
+        .table_price tr:nth-child(2n) {
+            background: #E5E5E5;
+        }
+        .table_price td:last-of-type {
+            text-align: center;
+        }
+        .table_price a {
+            display: inline-block;
+            padding: 5px 10px;
+            background: #F79361;
+            box-shadow: 2px 2px 0 0 #a22800;
+            position: relative;
+        }
+        .table_price a:hover {
+            box-shadow: none;
+            top: 2px;
+            left: 2px;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #fdb793;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #111;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><a th:href="@{/index}">Главная</a></li>
+    <li><a th:href="@{/addRecord}">Добавить заметку</a></li>
+</ul>
+<br/><br/>
+<div>
+    <table class="table_price" border="1" th:id="lord-table">
+        <caption>Заметки</caption>
+        <tr>
+            <th>Заглавие</th>
+            <th>Автор</th>
+            <th>Дата создания</th>
+        </tr>
+        <tr th:each ="record : ${records}" th:id="record-list">
+            <td><a th:href="@{/recordInfo/{id}(id=${record.id})}" th:utext="${record.title}"></a></td>
+            <td th:utext="${record.author}">...</td>
+            <td th:utext="${record.createdDate}">...</td>
+            <td><a th:href="@{/recordInfo/{id}/edit(id=${record.id})}">Изменить</a></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
