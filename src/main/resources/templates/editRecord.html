@@ -101,7 +101,7 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #fdb793;
+            background-color: #f3473f;
         }
 
         li {
@@ -124,7 +124,7 @@
 <body>
 <ul>
     <li><a th:href="@{/index}">Главная</a></li>
-    <li><a th:href="@{/recordInfo}">Назад</a></li>
+    <li><a th:href="@{/recordList}">Назад</a></li>
 </ul>
 <form class="decor" th:action="@{/recordInfo/{id}/edit(id=${record_id})}"
                     th:object="${recordRequest}" method="post">
